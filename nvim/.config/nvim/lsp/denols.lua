@@ -1,7 +1,7 @@
 ---@type vim.lsp.Config
 return {
     cmd = { 'deno', 'lsp' },
-    cmd_env = { NO_COLOR = true },
+    -- cmd_env = { NO_COLOR = true },
     filetypes = {
       'javascript',
       'javascriptreact',
