@@ -1,94 +1,94 @@
 {
-  "layer": "top",
-  "position": "top",
-  "height": 36,
-  "spacing": 6,
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
-  "modules-center": [
-    "hyprland/window"
-  ],
-  "modules-right": [
-    "tray",
-    "custom/space",
-    "network",
-    "pulseaudio",
-    "battery",
-    "clock",
-    "custom/power"
-  ],
-    "network": {
-        "format-wifi": "󰤨",
-        "format-disconnected": "󰤭",
-			  "tooltip-format": "Connected to {essid} via {ifname}",	
-				"on-click": "iwgtk"
-    },
-  "wlr/taskbar": {
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": [
-      "foot{capacity}"
-    ]
-  },
-  "wlr/workspaces": {
-    "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace e-1",
-    "on-scroll-down": "hyprctl dispatch workspace e+1"
-  },
-  "custom/bluetooth": {
-    "exec": "blueman-applet",
-    "interval": 60,
-    "format": "{output}"
-  },
-  "hyprland/window": {
-    "max-length": 80
-  },
-  "custom/weather": {
-    "exec": "bash ~/.config/waybar/wittr.sh",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "interval": 900
-  },
-  "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
-        "format-charging": "󰂄",
-        "format-warning": "󰂃",
-	"tooltip-format": "{capacity}% capacity"
-  },
-  "pulseaudio": {
-        "format": "{icon}",
-        "format-icons": ["󰝟", "󰕿", "󰖀", "󰕾"],
-        "format-muted": "󰝟",
-        "on-click": "pavucontrol",
-        "tooltip-format": "{volume}%"
-  },
-  "clock": {
-        "format": "{:%I:%M %p}",
-        "tooltip": true,
-        "tooltip-format": "{:%B %d, %Y (%A)}"
-  },
-  "tray": {
-    	"icon-size": 20,
-    	"spacing": 2
-  },
-    "custom/power": {
-        "format": "<span size='large'>󰐥</span>",
-        "on-click": "wlogout"
-  },
-  "custom/menu": {
-        "format": "<span size='large'>\uf303</span>",
-        "on-click": "rofi -disable-history -show drun"
-  },
-    "custom/space": {
-        "format": "|"
-  },
+	"layer": "top",
+		"position": "top",
+		"height": 36,
+		"spacing": 6,
+		"modules-left": [
+			"hyprland/workspaces"
+		],
+		"modules-center": [
+			"hyprland/window"
+		],
+		"modules-right": [
+			"tray",
+		"custom/space",
+		"network",
+		"pulseaudio",
+		"battery",
+		"clock",
+		"custom/power"
+		],
+		"network": {
+			"format-wifi": "󰤨",
+			"format-disconnected": "󰤭",
+			"tooltip-format": "Connected to {essid} via {ifname}",	
+			"on-click": "iwgtk"
+		},
+		"wlr/taskbar": {
+			"on-click": "activate",
+			"on-click-middle": "close",
+			"ignore-list": [
+				"foot{capacity}"
+			]
+		},
+		"wlr/workspaces": {
+			"on-click": "activate",
+			"on-scroll-up": "hyprctl dispatch workspace e-1",
+			"on-scroll-down": "hyprctl dispatch workspace e+1"
+		},
+		"custom/bluetooth": {
+			"exec": "blueman-applet",
+			"interval": 60,
+			"format": "{output}"
+		},
+		"hyprland/window": {
+			"max-length": 80
+		},
+		"custom/weather": {
+			"exec": "bash ~/.config/waybar/wittr.sh",
+			"return-type": "json",
+			"format": "{}",
+			"tooltip": true,
+			"interval": 900
+		},
+		"battery": {
+			"format": "{capacity}% {icon}",
+			"format-icons": [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
+			"format-charging": "󰂄",
+			"format-warning": "󰂃",
+			"tooltip-format": "{capacity}% capacity"
+		},
+		"pulseaudio": {
+			"format": "{volume}% {icon}",
+			"format-icons": ["󰕿", "󰖀", "󰕾"],
+			"format-muted": "󰝟",
+			"on-click": "pavucontrol",
+			"tooltip-format": "{volume}%"
+		},
+		"clock": {
+			"format": "{:%I:%M %p}",
+			"tooltip": true,
+			"tooltip-format": "{:%B %d, %Y (%A)}"
+		},
+		"tray": {
+			"icon-size": 20,
+			"spacing": 2
+		},
+		"custom/power": {
+			"format": "<span size='large'>󰐥</span>",
+			"on-click": "wlogout"
+		},
+		"custom/menu": {
+			"format": "<span size='large'>\uf303</span>",
+			"on-click": "rofi -disable-history -show drun"
+		},
+		"custom/space": {
+			"format": "|"
+		},
 
-  "hyprland/language": {
-    "format-pl": "[pl]",
-    "format-en": "[us]",
-    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
-  },
+		"hyprland/language": {
+			"format-pl": "[pl]",
+			"format-en": "[us]",
+			"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+		},
 }
