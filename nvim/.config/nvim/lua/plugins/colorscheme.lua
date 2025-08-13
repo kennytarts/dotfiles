@@ -24,9 +24,16 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
+		transparent = true,
+		styles = {
+			sidebars = "transparent",
+			floats = "transparent",
+		},
 		priority = 1000,
 		config = function ()
 			vim.cmd("colorscheme kanagawa")
+			vim.cmd("highlight Normal guibg=None")
+			vim.cmd("highlight NonText guibg=None")
 		end,
 	},
 }

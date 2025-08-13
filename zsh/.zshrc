@@ -1,5 +1,5 @@
 sleep 0.01
-neofetch
+fastfetch
 
 # P10K
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -43,6 +43,11 @@ alias cat=bat
 alias fzf="fzf --preview='bat {}'"
 alias superman="sudo pacman"
 alias vim=nvim
+alias binfo="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+alias ls="eza -la"
+
+# School aliases
+#alias sc1003ven ="source ~/venv/sc1003/bin/activate"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -60,4 +65,4 @@ export FZF_CTRL_T_OPTS="
 --walker-skip .git,node_modules,target
 --preview 'bat -n --color=always {}'
 --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp} --type f"
+# export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp} --type f"
