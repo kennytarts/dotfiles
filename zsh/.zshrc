@@ -44,10 +44,7 @@ alias fzf="fzf --preview='bat {}'"
 alias superman="sudo pacman"
 alias vim=nvim
 alias binfo="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
-alias ls="eza -la"
-
-# School aliases
-#alias sc1003ven ="source ~/venv/sc1003/bin/activate"
+alias ls="eza -a --tree --level=1 --icons=always"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -55,7 +52,6 @@ alias ls="eza -la"
 # Exports
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 export PATH="$HOME/.cargo/bin:$PATH"
 
 source <(fzf --zsh)
@@ -64,4 +60,3 @@ export FZF_CTRL_T_OPTS="
 --walker-skip .git,node_modules,target
 --preview 'bat -n --color=always {}'
 --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-# export FZF_DEFAULT_COMMAND="fdfind --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,tmp} --type f"

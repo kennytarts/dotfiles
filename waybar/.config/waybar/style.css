@@ -1,81 +1,52 @@
 @import url("./colors.css");
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Material Icons";
-    font-size: 13pt;
-    min-height: 0;
+	border: none;
+	border-radius: 0;
+	font-family: "MesloLGSNFM-Regular", "Font Awesome 6 Free", "Material Icons";
+	font-size: 13pt;
+	min-height: 0;
 }
 window#waybar {
-    background: @background;
-    color: @foreground;
+	background: @background;
+	color: @foreground;
 }
 #workspaces button {
-    min-width: 12px;
-    opacity: 0.9;
-    padding: 0 8px;
-    background: @background;
-    color: #404040;
+	min-width: 12px;
+	opacity: 0.9;
+	padding: 0 8px;
+	background: @background;
+	color: #404040;
 }
 #workspaces button:hover {
-    min-width: 12px; 
-    opacity: 0.9;
-    box-shadow: inherit;
-    text-shadow: inherit;
+	min-width: 12px; 
+	opacity: 0.9;
+	box-shadow: inherit;
+	text-shadow: inherit;
 }
 #workspaces button.active {
-    min-width: 12px;
-    background: @background;
-    color: #ffffff
+	min-width: 12px;
+	background: @background;
+	color: #ffffff
 }
 #taskbar button.active {
-    background-image: linear-gradient(0deg, @selection, @background-darker);
-}
-#clock {
-    background: @background;
+	background-image: linear-gradient(0deg, @selection, @background-darker);
 }
 #workspaces {
-    padding-left: 6px 
+	padding-left: 6px 
 }
-#network {
-    color: #9dbcd4;
-    padding-right: 6px;
+
+#pulseaudio,
+#battery,
+#backlight,
+#clock {
+	color: @foreground;
 }
 
 #tray {
-    padding-right: 6px
+	padding-right: 6px
 }
 
-/* Battery Module */
-#battery {
-    color: #9ab69b;
-    padding-left: 4px;
-    padding-right: 2px
-}
-
-#pulseaudio {
-    font-size: 20.5px;
-    color: #D4B483;
-    padding-right: 4px;
-    padding-left: 4px
-}
 #custom-space {
-  color: #808080;
-  padding-left: 8px
+	color: #808080;
+	padding-left: 8px
 }
-#custom-power {
-  color: #B87C7C;
-  padding-right: 13px
-}
-#custom-menu {
-  color: #A3AABE;
-  padding-right: 6px;
-  padding-left: 12px
-}
-/* Clock Module */
-#clock {
-    color: #EEEEEE;
-    padding-left: 4px;
-    padding-right: 7.25px
-}
-

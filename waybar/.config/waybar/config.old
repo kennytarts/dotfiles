@@ -7,14 +7,23 @@
 			"hyprland/workspaces"
 		],
 		"modules-center": [
-			"clock"
+			"hyprland/window"
 		],
 		"modules-right": [
 			"tray",
-			"backlight",
+			"custom/space",
+			"network",
 			"pulseaudio",
 			"battery",
+			"clock",
+			"custom/power"
 		],
+		"network": {
+			"format-wifi": "󰤨",
+			"format-disconnected": "󰤭",
+			"tooltip-format": "Connected to {essid} via {ifname}",	
+			"on-click": "iwgtk"
+		},
 		"wlr/taskbar": {
 			"on-click": "activate",
 			"on-click-middle": "close",
@@ -27,23 +36,37 @@
 			"on-scroll-up": "hyprctl dispatch workspace e-1",
 			"on-scroll-down": "hyprctl dispatch workspace e+1"
 		},
+		"custom/bluetooth": {
+			"exec": "blueman-applet",
+			"interval": 60,
+			"format": "{output}"
+		},
 		"hyprland/window": {
 			"max-length": 80
 		},
+		"custom/weather": {
+			"exec": "bash ~/.config/waybar/wittr.sh",
+			"return-type": "json",
+			"format": "{}",
+			"tooltip": true,
+			"interval": 900
+		},
 		"battery": {
-			"format": "<span color='#252525'> / </span> <span color='#afa193'><b>bat:</b></span> {capacity}% {icon} <span color='#252525'> ] </span>",
+			"format": "{capacity}% {icon}",
+			"format-icons": [ "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ],
+			"format-charging": "󰂄",
+			"format-warning": "󰂃",
 			"tooltip-format": "{capacity}% capacity"
 		},
 		"pulseaudio": {
-			"format": "<span color='#252525'> / </span> <span color='#afa193'><b>vol:</b></span> {volume}%",
+			"format": "{volume}% {icon}",
+			"format-icons": ["󰕿", "󰖀", "󰕾"],
+			"format-muted": "󰝟",
 			"on-click": "pavucontrol",
 			"tooltip-format": "{volume}%"
 		},
-		"backlight": {
-			"format": "<span color='#252525'> [ </span> <span color='#afa193'><b>mon:</b></span> {percent}% {icon}",
-		},
 		"clock": {
-			"format": "<span color='#252525'> [ </span> {:%H:%M} <span color='#252525'> ] </span>",
+			"format": "{:%I:%M %p}",
 			"tooltip": true,
 			"tooltip-format": "{:%B %d, %Y (%A)}"
 		},
@@ -55,6 +78,14 @@
 			"format": "<span size='large'>󰐥</span>",
 			"on-click": "wlogout"
 		},
+		"custom/menu": {
+			"format": "<span size='large'>\uf303</span>",
+			"on-click": "rofi -disable-history -show drun"
+		},
+		"custom/space": {
+			"format": "|"
+		},
+
 		"hyprland/language": {
 			"format-pl": "[pl]",
 			"format-en": "[us]",
