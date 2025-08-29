@@ -24,6 +24,11 @@ zinit light zsh-users/zsh-syntax-highlighting # Syntax highlighting
 zinit light zsh-users/zsh-completions # Autocompletion
 zinit light zsh-users/zsh-autosuggestions # Suggesting past commands 
 
+# Basic auto/tab complete:
+autoload -U compinit && compinit
+autoload -U colors && colors
+zmodload zsh/complist
+
 # History
 HISTFILE=~/.histfile
 HISTSIZE=5000
