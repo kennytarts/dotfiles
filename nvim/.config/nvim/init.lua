@@ -30,7 +30,7 @@ map("n", "<leader>s", ":e #<CR>")
 map("n", "<leader>S", ":sf #<CR>")
 map({ "n", "v" }, "<leader>y", '"+y')
 map({ "n", "v" }, "<leader>d", '"+d')
-map({ "n", "v" }, "<leader>c", "1z=")
+map({ "n", "v" }, "<leader>c", "z=")
 
 -- PLUGINS
 vim.pack.add({
@@ -59,13 +59,7 @@ vim.cmd(":hi nontext guibg=NONE")
 
 -- SETUPS
 require "mason".setup()
-require "mini.pick".setup({
-	pickers = {
-		find_files = {
-			hidden = true,
-		}
-	}
-})
+require "mini.pick".setup()
 require "oil".setup()
 require "nvim-treesitter".setup({
 	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
