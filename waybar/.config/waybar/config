@@ -1,63 +1,48 @@
 {
 	"layer": "top",
-		"position": "top",
-		"height": 30,
-		"spacing": 6,
-		"modules-left": [
-			"hyprland/workspaces"
-		],
-		"modules-center": [
-			"clock"
-		],
-		"modules-right": [
-			"tray",
-			"backlight",
-			"pulseaudio",
-			"battery",
-		],
-		"wlr/taskbar": {
-			"on-click": "activate",
-			"on-click-middle": "close",
-			"ignore-list": [
-				"foot{capacity}"
-			]
-		},
-		"wlr/workspaces": {
-			"on-click": "activate",
-			"on-scroll-up": "hyprctl dispatch workspace e-1",
-			"on-scroll-down": "hyprctl dispatch workspace e+1"
-		},
-		"hyprland/window": {
-			"max-length": 80
-		},
-		"battery": {
-			"format": "<span color='#252525'> / </span> <span color='#afa193'><b>bat:</b></span> {capacity}% {icon} <span color='#252525'> ] </span>",
-			"tooltip-format": "{capacity}% capacity"
-		},
-		"pulseaudio": {
-			"format": "<span color='#252525'> / </span> <span color='#afa193'><b>vol:</b></span> {volume}%",
-			"on-click": "pavucontrol",
-			"tooltip-format": "{volume}%"
-		},
-		"backlight": {
-			"format": "<span color='#252525'> [ </span> <span color='#afa193'><b>mon:</b></span> {percent}% {icon}",
-		},
-		"clock": {
-			"format": "<span color='#252525'> [ </span> {:%H:%M} <span color='#252525'> ] </span>",
-			"tooltip": true,
-			"tooltip-format": "{:%B %d, %Y (%A)}"
-		},
-		"tray": {
-			"icon-size": 20,
-			"spacing": 2
-		},
-		"custom/power": {
-			"format": "<span size='large'>󰐥</span>",
-			"on-click": "wlogout"
-		},
-		"hyprland/language": {
-			"format-pl": "[pl]",
-			"format-en": "[us]",
-			"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
-		},
+	"position": "top",
+	"height": 35,
+	"spacing": 15,
+	"modules-left": [
+		"hyprland/workspaces"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"network",
+		"backlight",
+		"pulseaudio",
+		"battery",
+	],
+	"wlr/workspaces": {
+		"on-click": "activate",
+		"on-scroll-up": "hyprctl dispatch workspace e-1",
+		"on-scroll-down": "hyprctl dispatch workspace e+1"
+	},
+	"battery": {
+		"format": "<b>bat:</b>{capacity}% {icon}",
+		"tooltip-format": "{capacity}% capacity"
+	},
+	"pulseaudio": {
+		"format": "<b>vol:</b>{volume}%",
+		"tooltip-format": "{volume}%"
+	},
+	"backlight": {
+		"format": "<b>mon:</b>{percent}%",
+	},
+	"clock": {
+		"format": "{:%b %d %H:%M}",
+		"tooltip-format": "{:%B %d, %Y (%A)}"
+	},
+	"network": {
+		"format-disconncted": "disconnected",
+		"format-wifi": "<b>int</b>:connected",
+		"tooltip-format": "{essid} via {ifname}",
+		"on-click": "nm-connection-editor"
+	},
+	"tray": {
+		"icon-size": 20,
+		"spacing": 2
+	},
 }
