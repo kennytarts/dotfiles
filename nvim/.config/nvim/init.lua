@@ -3,7 +3,7 @@ vim.cmd([[set mouse=]])
 vim.cmd([[set noswapfile]])
 
 -- OPTIONS
-vim.opt.winborder = "rounded"
+vim.opt.winborder = "solid"
 vim.opt.tabstop = 4
 vim.opt.wrap = false
 vim.opt.cursorcolumn = false
@@ -13,20 +13,17 @@ vim.opt.smartindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.scrolloff = 999
 vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
 
 -- DEFAULT KEYMAPS
 local map = vim.keymap.set
 vim.g.mapleader = " "
 map("n", "<leader>o", ":update<CR> :source<CR>")
 map("n", "<leader>w", ":write<CR>")
-map("n", "mk", ":update<CR> :make<CR>")
-map("n", "co", ":open<CR>")
 map("n", "<leader>q", ":quit<CR>")
-map("n", "<C-f>", ":Open .<CR>")
 map("n", "<leader>v", ":e $MYVIMRC<CR>")
 map("n", "<leader>z", ":e ~/dotfiles/zsh/.zshrc<CR>")
 map("n", "<leader>s", ":e #<CR>")
@@ -62,20 +59,28 @@ vim.cmd(":hi nontext guibg=NONE")
 
 -- SETUPS
 require "mason".setup()
-require "mini.pick".setup({
-	mappings = {
-		choose_marked = "<C-G>"
-	}
-})
+require "mini.pick".setup()
 require "oil".setup()
+require "nvim-treesitter".setup({
+	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
+	sync_install = true,
+	auto_install = true,
+	highlight = { enable = true },
+	indent = { enable = true },
+})
 
 -- PLUGIN KEYMAPS
 map("n", "<leader>f", ":Pick files<CR>")
 map("n", "<leader>h", ":Pick help<CR>")
 map("n", "<leader>e", ":Oil<CR>")
-map("n", "<leader>lf", vim.lsp.buf.format)
 
 -- LSP
 vim.lsp.enable({
 	"lua_ls",
+	"basedpyright",
 })
+
+-- LSP KEYMAPS
+map("n", "<leader>lf", vim.lsp.buf.format)
+map("n", "<leader>lgd", vim.lsp.buf.definition)
+map("n", "<leader>ld", vim.diagnostic.open_float)

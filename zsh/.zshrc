@@ -1,5 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 sleep 0.01
-# fastfetch
+fastfetch
 
 autoload -U colors && colors
 bindkey -e
@@ -42,17 +49,8 @@ bindkey -v
 zstyle :compinstall filename '/home/kenny/.zshrc'
 
 # Exports
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export PATH="$HOME/.cargo/bin:$PATH"
-
-source <(fzf --zsh)
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="
---walker-skip .git,node_modules,target
---preview 'bat -n --color=always {}'
---bind 'ctrl-/:change-preview-window(down|hidden|)'"
-
 export PATH="/home/kenny/.local/share/bob/nightly/bin:$PATH"
 
 # Aliases
@@ -61,8 +59,12 @@ alias vi="nvim"
 alias venv="source .venv/bin/activate"
 alias superman="sudo pacman"
 alias cat="bat"
-alias fzf="fzf --preview='bat {}'"
+alias fzf="fzf --color='bw' --preview='bat {}'"
 alias binfo="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias ls="eza"
 
 source /home/kenny/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
