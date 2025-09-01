@@ -59,7 +59,13 @@ vim.cmd(":hi nontext guibg=NONE")
 
 -- SETUPS
 require "mason".setup()
-require "mini.pick".setup()
+require "mini.pick".setup({
+	pickers = {
+		find_files = {
+			hidden = true,
+		}
+	}
+})
 require "oil".setup()
 require "nvim-treesitter".setup({
 	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
