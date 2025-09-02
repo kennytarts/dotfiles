@@ -1,5 +1,5 @@
 sleep 0.01
-fastfetch
+#fastfetch
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -53,10 +53,12 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/home/kenny/.local/share/bob/nightly/bin:$PATH"
+export RIPGREP_CONFIG_PATH="/home/kenny/.config/ripgreprc"
 
 # Aliases
 alias vim="nvim"
 alias vi="nvim"
+alias tm="tmux new -s kenny"
 alias venv="source .venv/bin/activate"
 alias superman="sudo pacman"
 alias cat="bat"
