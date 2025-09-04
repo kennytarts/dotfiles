@@ -66,7 +66,7 @@ alias fzf="fzf --color='bw' --preview='bat {}'"
 alias binfo="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias ls="eza"
 
-source /home/kenny/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
