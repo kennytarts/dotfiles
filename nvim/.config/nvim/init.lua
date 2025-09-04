@@ -21,16 +21,15 @@ vim.opt.updatetime = 250
 -- DEFAULT KEYMAPS
 local map = vim.keymap.set
 vim.g.mapleader = " "
-map("n", "<leader>o", ":update<CR> :source<CR>")
-map("n", "<leader>w", ":write<CR>")
-map("n", "<leader>q", ":quit<CR>")
-map("n", "<leader>v", ":e $MYVIMRC<CR>")
-map("n", "<leader>z", ":e ~/dotfiles/zsh/.zshrc<CR>")
-map("n", "<leader>s", ":e #<CR>")
-map("n", "<leader>S", ":sf #<CR>")
-map({ "n", "v" }, "<leader>y", '"+y')
-map({ "n", "v" }, "<leader>d", '"+d')
-map({ "n", "v" }, "<leader>c", "z=")
+map("n", "<leader>o", ":update<CR> :source<CR>", { desc = "Source file" })
+map("n", "<leader>w", ":write<CR>", { desc = "Write file" })
+map("n", "<leader>q", ":quit<CR>", { desc = "Quit" })
+map("n", "<leader>v", ":e $MYVIMRC<CR>", { desc = "Open nvim config" })
+map("n", "<leader>s", ":e #<CR>", { desc = "Go to previous buffer" })
+map("n", "<leader>S", ":sf #<CR>", { desc = "Open buffer in split" })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Global yank" })
+map({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete and global yank" })
+map({ "n", "v" }, "<leader>c", "z=", { desc = "Autospell" })
 
 -- PLUGINS
 vim.pack.add({
@@ -38,11 +37,12 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/norcalli/nvim-colorizer.lua" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/echasnovski/mini.pick" },
+	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp" },
+	{ src = "https://github.com/Saghen/blink.cmp",                version = vim.version.range("*") },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 })
 
 -- PLUGIN SETUP
@@ -61,7 +61,19 @@ vim.cmd(":hi nontext guibg=NONE")
 -- SETUPS
 require "mason".setup()
 require "mini.pick".setup()
+require "mini.pairs".setup()
+require "mini.surround".setup()
 require "oil".setup()
+require "blink.cmp".setup({
+	keymap = {
+		["<CR>"] = { "accept", "fallback" },
+		["<Tab>"] = { "select_next", "fallback" },
+		["<S-Tab>"] = { "select_prev", "fallback" },
+		["<C-k>"] = { "scroll_documentation_up", "fallback" },
+		["<C-j>"] = { "scroll_documentation_down", "fallback" },
+		["<C-e>"] = { "cancel" },
+	},
+})
 require "nvim-treesitter".setup({
 	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
 	sync_install = true,
@@ -69,11 +81,27 @@ require "nvim-treesitter".setup({
 	highlight = { enable = true },
 	indent = { enable = true },
 })
+local miniclue = require('mini.clue')
+require "mini.clue".setup({
+	triggers = {
+		{ mode = 'n', keys = '<Leader>' },
+		{ mode = 'x', keys = '<Leader>' },
+		{ mode = 'i', keys = '<C-x>' },
+		{ mode = 'n', keys = 'g' },
+		{ mode = 'x', keys = 'g' },
+		{ mode = 'n', keys = '<C-w>' },
+	},
+	clues = {
+		miniclue.gen_clues.builtin_completion(),
+		miniclue.gen_clues.g(),
+		miniclue.gen_clues.windows(),
+	},
+})
 
 -- PLUGIN KEYMAPS
-map("n", "<leader>f", ":Pick files<CR>")
-map("n", "<leader>h", ":Pick help<CR>")
-map("n", "<leader>e", ":Oil<CR>")
+map("n", "<leader>f", ":Pick files<CR>", { desc = "Find file in CWD" })
+map("n", "<leader>h", ":Pick help<CR>", { desc = "Find help" })
+map("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil" })
 
 -- LSP
 vim.lsp.enable({
@@ -81,7 +109,10 @@ vim.lsp.enable({
 	"basedpyright",
 })
 
--- LSP KEYMAPS
-map("n", "<leader>lf", vim.lsp.buf.format)
-map("n", "<leader>lgd", vim.lsp.buf.definition)
-map("n", "<leader>ld", vim.diagnostic.open_float)
+map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format file" })
+map("n", "<leader>lgd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
+
+-- SNIPPETS
+require("luasnip").setup({ enable_autosnippets = true })
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
