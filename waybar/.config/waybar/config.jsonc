@@ -2,43 +2,56 @@
 	"layer": "top",
 	"position": "top",
 	"height": 36,
-	"spacing": 16,
+	"spacing": 13,
 	"modules-left": [
 		"hyprland/workspaces"
 	],
 	"modules-center": [
+		"mpris",
 		"clock"
 	],
 	"modules-right": [
 		"network",
-		"backlight",
 		"pulseaudio",
-		"battery",
+		"backlight",
+		"battery"
 	],
 	"wlr/workspaces": {
 		"on-click": "activate",
 		"on-scroll-up": "hyprctl dispatch workspace e-1",
 		"on-scroll-down": "hyprctl dispatch workspace e+1"
 	},
-	"battery": {
-		"format": "<b>bat:</b>{capacity}% {icon}",
-		"tooltip-format": "{capacity}% capacity"
-	},
-	"pulseaudio": {
-		"format": "<b>vol:</b>{volume}%",
-		"tooltip-format": "{volume}%"
-	},
-	"backlight": {
-		"format": "<b>mon:</b>{percent}%",
+	"custom/separator": {
+		"format": "<b>|</b>"
 	},
 	"clock": {
 		"format": "{:%b %d %H:%M}",
 		"tooltip-format": "{:%B %d, %Y (%A)}"
 	},
+	"battery": {
+		"format": "<b>bat:</b>{capacity}% {icon}",
+		"tooltip-format": "{capacity}% capacity"
+	},
+	"backlight": {
+		"format": "<b>bri:</b>{percent}%"
+	},
+	"pulseaudio": {
+		"format": "<b>vol:</b>{volume}%",
+		"format-muted": "<b>vol:</b>muted",
+		"format-bluetooth": "<b>vol:</b>{volume}%"
+	},
 	"network": {
-		"format-disconncted": "disconnected",
+		"format-disconncted": "<b>int</b>:disconnected",
 		"format-wifi": "<b>int</b>:connected",
 		"tooltip-format": "{essid} via {ifname}",
 		"on-click": "nm-connection-editor"
 	},
+	"mpris": {
+		"format": "<b>{artist}</b> - {title} |",
+		"format-paused": "{status_icon} <b>{artist}</b> - {title} |",
+		"max-length": 30,
+		"status-icons": {
+			"paused": "⏸"
+		}
+	}
 }
