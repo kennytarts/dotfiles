@@ -40,31 +40,42 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = "https://github.com/Saghen/blink.cmp",                version = vim.version.range("*") },
+	{ src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("*") },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
 })
 
 -- PLUGIN SETUP
 -- THEME
 vim.cmd("colorscheme kanagawa")
-require "kanagawa".setup({
+require("kanagawa").setup({
 	transparent = true,
 	styles = {
 		sidebars = "transparent",
 		floats = "transparent",
-	}
+	},
 })
 vim.cmd(":hi normal guibg=NONE")
 vim.cmd(":hi nontext guibg=NONE")
 
 -- SETUPS
-require "mason".setup()
-require "mini.pick".setup()
-require "mini.pairs".setup()
-require "mini.surround".setup()
-require "oil".setup()
-require "blink.cmp".setup({
+require("nvim-treesitter").setup({
+	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
+	sync_install = true,
+	auto_install = true,
+	highlight = { enable = true },
+	indent = { enable = true },
+})
+require("oil").setup()
+require("mason").setup()
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		python = { "autopep8" },
+	},
+})
+require("blink.cmp").setup({
 	keymap = {
 		["<CR>"] = { "accept", "fallback" },
 		["<Tab>"] = { "select_next", "fallback" },
@@ -74,29 +85,9 @@ require "blink.cmp".setup({
 		["<C-e>"] = { "cancel" },
 	},
 })
-require "nvim-treesitter".setup({
-	ensure_installed = { "c", "cpp", "java", "python", "javascript", "typescript", "lua", "rust", "bash" },
-	sync_install = true,
-	auto_install = true,
-	highlight = { enable = true },
-	indent = { enable = true },
-})
-local miniclue = require('mini.clue')
-require "mini.clue".setup({
-	triggers = {
-		{ mode = 'n', keys = '<Leader>' },
-		{ mode = 'x', keys = '<Leader>' },
-		{ mode = 'i', keys = '<C-x>' },
-		{ mode = 'n', keys = 'g' },
-		{ mode = 'x', keys = 'g' },
-		{ mode = 'n', keys = '<C-w>' },
-	},
-	clues = {
-		miniclue.gen_clues.builtin_completion(),
-		miniclue.gen_clues.g(),
-		miniclue.gen_clues.windows(),
-	},
-})
+require("mini.pick").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
 
 -- PLUGIN KEYMAPS
 map("n", "<leader>f", ":Pick files<CR>", { desc = "Find file in CWD" })
@@ -109,7 +100,7 @@ vim.lsp.enable({
 	"basedpyright",
 })
 
-map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format file" })
+map("n", "<leader>lf", require("conform").format, { desc = "Format file" })
 map("n", "<leader>lgd", vim.lsp.buf.definition, { desc = "Go to definition" })
 map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
 
